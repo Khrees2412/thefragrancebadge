@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, Variants } from "framer-motion";
-import { Instagram, Phone as Whatsapp } from "lucide-react"; // Using similar icons for placeholders
+import { motion } from "framer-motion";
+import { Instagram, Video as Tiktok, Phone as Whatsapp } from "lucide-react"; // Using similar icons for placeholders
 
 const links = [
   { name: "Heels", url: "#heels" },
@@ -16,7 +16,8 @@ const links = [
 const categories = [
   {
     id: "heels",
-    title: "Heels",
+    title: "Heels & Slippers",
+    description: "Step into confidence with heels crafted for striking elegance and lasting durability. From commanding classic pumps to head-turning stilettos, discover the perfect pair to match your ambition. Imagine commanding the room with every step—poised, empowered, and ready to conquer the world.\n\nBecause true luxury doesn't end when you kick off your heels. Our premium slippers provide the ultimate reward after a long day. Slip into plush, meticulously designed comfort that tells your feet: you've earned this.",
     items: [
       { src: "/assets/1fb59f7d-61a0-4623-b44d-4088775b1f4c.jpg", title: "Gucci Heels", description: "Elegant Gucci heels" },
       { src: "/assets/3084fd46-3acf-4e13-9f8f-4007d8052f17.jpg", title: "Alevi Milano", description: "Rhinestone detailing" },
@@ -31,6 +32,7 @@ const categories = [
   {
     id: "bags",
     title: "Bags",
+    description: "More than just an accessory—your bag is a statement of who you are. Whether you need a structured tote for the boardroom or an effortlessly chic crossbody for the weekend, our curated collection carries your essentials securely while instantly elevating every outfit.",
     items: [
       { src: "/assets/1e152282-1295-48b5-95f8-6aeb9abac25a.jpg", title: "Chic 2nd Bag", description: "Stylish handbag collection" },
       { src: "/assets/171cea43-358d-44ad-8480-280246bf5d4f.jpg", title: "Chic 2nd Denim", description: "Denim mini bag" },
@@ -44,6 +46,7 @@ const categories = [
   {
     id: "luxury-wears",
     title: "Luxury Wears",
+    description: "Command attention without saying a word. Our luxury apparel pairs impeccable tailoring with indulgent fabrics, creating pieces that feel as exquisite as they look. Upgrade your wardrobe with timeless essentials designed to ensure you're always the best-dressed in the room.",
     items: [
       { src: "/assets/00d45c9b-808c-4735-ab3e-ec5bb35b8421.jpg", title: "White Jumpsuit", description: "Sleek and elegant fit" },
       { src: "/assets/7a743ca5-31dd-433a-8519-c738c65e0a38.jpg", title: "Calvin Klein", description: "Classic black tee" },
@@ -53,6 +56,7 @@ const categories = [
   {
     id: "perfumes",
     title: "Perfumes",
+    description: "A scent is the most intense form of memory. Leave an unforgettable impression with our handpicked collection of premium fragrances. Whether you prefer the alluring depth of an Eau de Parfum or the fresh burst of a body mist, find the signature scent that lingers long after you've left.",
     items: [
       { src: "/assets/IMG_5596.JPG", title: "Pistachio Kunafa", description: "Dubai Chocolate Anfar 1950" },
       { src: "/assets/IMG_5593.JPG", title: "Maiden Anna", description: "Heel & Perfume Set" },
@@ -64,6 +68,7 @@ const categories = [
   {
     id: "hairs",
     title: "Hairs & Wigs",
+    description: "Your hair is your crown—wear it with pride. From vibrant, bouncy curls to sleek human hair blends, our premium extensions are designed for flawless volume and effortless styling. Switch up your look instantly with natural textures that inspire confidence.",
     items: [
       { src: "/assets/IMG_6748.PNG", title: "Mila Bounce Hair", description: "Royal & coffee human hair blend" },
       { src: "/assets/IMG_7343.jpg", title: "UB Orange Hair", description: "Vibrant orange wig" },
@@ -73,35 +78,12 @@ const categories = [
   {
     id: "accessories",
     title: "Accessories",
+    description: "It’s the subtle details that pull a masterpiece together. Elevate any ensemble with our elegant finishing touches. Whether it's the classic grace of a pearl necklace or a delicate bracelet, our curated jewelry adds that final, definitive spark of sophistication.",
     items: [
       { src: "/assets/01b00ef0-3211-4592-a3a4-f579441594fd.jpg", title: "Pearl Jewelry Set", description: "Necklace and bracelet" },
     ]
   }
 ];
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 24,
-    },
-  },
-};
 
 export default function Home() {
   return (
@@ -109,20 +91,19 @@ export default function Home() {
       {/* Subtle Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-96 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <motion.div
+      <div
         className="w-full max-w-md flex flex-col items-center relative z-10"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
       >
         {/* Profile / Logo Area */}
-        <motion.div variants={itemVariants} className="flex flex-col items-center mb-10">
+        <div className="flex flex-col items-center mb-10">
           <div className="w-24 h-24 rounded-full border border-accent/30 p-1 mb-6 relative overflow-hidden group">
             <div className="w-full h-full rounded-full bg-surface-hover flex items-center justify-center overflow-hidden relative">
               <Image
                 src="/logo.png"
                 alt="The Fragrance Badge Logo"
                 fill
+                priority
+                sizes="96px"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
@@ -135,10 +116,35 @@ export default function Home() {
             ...creates your signature scent
             <span className="w-4 h-[1px] bg-muted/50"></span>
           </p>
+          <div className="flex flex-col items-center text-center mt-3 gap-1">
+            <span className="text-accent/90 font-serif text-lg">The badge of elegance 🥰 ❤️</span>
+            <span className="text-muted/80 text-xs tracking-widest uppercase">Elegance redefined, one step at a time</span>
+          </div>
+        </div>
+
+        {/* Social Icons - Now positioned more prominently before the links */}
+        <motion.div
+          id="contact"
+          className="flex flex-col items-center gap-5 my-8 w-full scroll-mt-24"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <span className="text-sm font-sans tracking-widest text-muted uppercase border-b border-accent/20 pb-1 px-4">Shop & Connect With Us</span>
+          <div className="flex gap-8">
+            <SocialIcon icon={<Instagram size={24} strokeWidth={1.5} />} href="https://www.instagram.com/the_badge_of_elegance/" label="Instagram" />
+            <SocialIcon icon={<Tiktok size={24} strokeWidth={1.5} />} href="https://www.tiktok.com/@thefragrancebadge" label="TikTok" />
+            <SocialIcon icon={<Whatsapp size={24} strokeWidth={1.5} />} href="https://wa.me/2349054030929" label="WhatsApp" />
+          </div>
         </motion.div>
 
         {/* Link List */}
-        <motion.div variants={itemVariants} className="w-full flex flex-col gap-4 mb-12">
+        <motion.div
+          className="w-full grid grid-cols-2 gap-4 mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        >
           {links.map((link, index) => (
             <motion.a
               key={index}
@@ -154,14 +160,7 @@ export default function Home() {
             </motion.a>
           ))}
         </motion.div>
-
-        {/* Social Icons */}
-        <motion.div variants={itemVariants} className="flex gap-8 mb-16">
-          <SocialIcon icon={<Instagram strokeWidth={1.5} />} href="https://instagram.com/thefragrancebadge" />
-          {/* <SocialIcon icon={<Tiktok strokeWidth={1.5} />} href="#" /> */}
-          <SocialIcon icon={<Whatsapp strokeWidth={1.5} />} href="https://wa.me/2349054030929" />
-        </motion.div>
-      </motion.div>
+      </div>
 
       {/* Visuals Gallery Sections */}
       <div className="w-full max-w-5xl mt-16 z-10 flex flex-col gap-20">
@@ -180,6 +179,12 @@ export default function Home() {
               <div className="flex-grow h-[1px] bg-accent/20"></div>
             </div>
 
+            {category.description && (
+              <div className="px-4 text-muted/80 text-sm max-w-3xl whitespace-pre-wrap leading-relaxed -mt-2">
+                {category.description}
+              </div>
+            )}
+
             <div className="flex gap-4 overflow-x-auto pb-8 no-scrollbar md:pb-12 px-4 snap-x">
               {category.items.map((item, idx) => (
                 <motion.div
@@ -192,6 +197,7 @@ export default function Home() {
                     src={item.src}
                     alt={item.title}
                     fill
+                    sizes="(max-width: 768px) 256px, 288px"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent flex flex-col justify-end p-4 opacity-100 transition-opacity duration-300">
@@ -201,6 +207,15 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
+
+            <div className="flex justify-center px-4 -mt-4 mb-4">
+              <a
+                href="#contact"
+                className="px-8 py-3 bg-accent text-background font-sans tracking-wide uppercase text-sm rounded-sm hover:bg-accent/90 transition-colors shadow-lg shadow-accent/20"
+              >
+                Shop {category.title}
+              </a>
+            </div>
           </motion.section>
         ))}
       </div>
@@ -208,15 +223,18 @@ export default function Home() {
   );
 }
 
-function SocialIcon({ icon, href }: { icon: React.ReactNode; href: string }) {
+function SocialIcon({ icon, href, label }: { icon: React.ReactNode; href: string; label?: string }) {
   return (
     <motion.a
       href={href}
-      className="w-12 h-12 rounded-full border border-accent/20 flex items-center justify-center text-accent/80 hover:text-accent hover:border-accent/60 bg-surface-hover transition-colors duration-300"
+      className="flex flex-col items-center gap-3 group"
       whileHover={{ y: -4, scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      {icon}
+      <div className="w-14 h-14 rounded-full border border-accent/20 flex items-center justify-center text-accent/80 group-hover:text-accent group-hover:border-accent/60 bg-surface-hover transition-colors duration-300 shadow-lg shadow-accent/5">
+        {icon}
+      </div>
+      {label && <span className="text-[10px] sm:text-xs font-sans tracking-wider text-muted group-hover:text-accent/80 transition-colors uppercase">{label}</span>}
     </motion.a>
   );
 }
