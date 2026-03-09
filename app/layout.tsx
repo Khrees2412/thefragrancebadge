@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
@@ -33,6 +34,7 @@ export default function RootLayout({
         className={`${cormorantGaramond.variable} ${plusJakartaSans.variable} font-sans antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
