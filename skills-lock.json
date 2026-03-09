@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+    },
+    "interaction-design": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "05088780c348108baaabdaf55c672a7967c2a82c4843c259343141f91a0da55a"
+    },
+    "marketing-psychology": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "ddec844d01d102687f89749e1d3a9f7a9019010dce1039a7d442189f39726ad4"
+    }
+  }
+}
