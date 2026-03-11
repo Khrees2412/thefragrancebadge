@@ -4,13 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Instagram, Video as Tiktok, Phone as Whatsapp } from "lucide-react"; // Using similar icons for placeholders
 
-const links = [
-  { name: "Heels", url: "#heels" },
-  { name: "Bags", url: "#bags" },
-  { name: "Luxury Wears", url: "#luxury-wears" },
-  { name: "Perfumes", url: "#perfumes" },
-  { name: "Hairs & Wigs", url: "#hairs" },
-  { name: "Accessories", url: "#accessories" },
+const brandLinks = [
+  { name: "The Fragrance Badge", url: "#the-fragrance-badge" },
+  { name: "The Badge of Elegance", url: "#the-badge-of-elegance" },
 ];
 
 const categories = [
@@ -99,8 +95,8 @@ export default function Home() {
           <div className="w-24 h-24 rounded-full border border-accent/30 p-1 mb-6 relative overflow-hidden group">
             <div className="w-full h-full rounded-full bg-surface-hover flex items-center justify-center overflow-hidden relative">
               <Image
-                src="/logo.png"
-                alt="The Fragrance Badge Logo"
+                src="/verse_logo.png"
+                alt="The Badge Verse Logo"
                 fill
                 priority
                 sizes="96px"
@@ -108,18 +104,14 @@ export default function Home() {
               />
             </div>
           </div>
-          <h1 className="font-serif text-3xl md:text-4xl text-foreground text-center tracking-wide mb-2 uppercase">
-            The Fragrance Badge
+          <h1 className="font-serif text-3xl md:text-5xl text-foreground text-center tracking-wide mb-2 uppercase">
+            The Badge Verse
           </h1>
           <p className="text-muted text-sm tracking-widest mb-1 flex items-center gap-2">
             <span className="w-4 h-[1px] bg-muted/50"></span>
-            ...creates your signature scent
+            Home of Elegance & Signature Scents
             <span className="w-4 h-[1px] bg-muted/50"></span>
           </p>
-          <div className="flex flex-col items-center text-center mt-3 gap-1">
-            <span className="text-accent/90 font-serif text-lg">The badge of elegance 🥰 ❤️</span>
-            <span className="text-muted/80 text-xs tracking-widest uppercase">Elegance redefined, one step at a time</span>
-          </div>
         </div>
 
         {/* Social Icons - Now positioned more prominently before the links */}
@@ -140,12 +132,12 @@ export default function Home() {
 
         {/* Link List */}
         <motion.div
-          className="w-full grid grid-cols-2 gap-4 mb-4"
+          className="w-full flex flex-col gap-4 mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          {links.map((link, index) => (
+          {brandLinks.map((link, index) => (
             <motion.a
               key={index}
               href={link.url}
@@ -162,25 +154,24 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Visuals Gallery Sections */}
-      <div className="w-full max-w-5xl mt-16 z-10 flex flex-col gap-20">
-        {categories.map((category) => (
+      {/* The Fragrance Badge Section */}
+      <div id="the-fragrance-badge" className="w-full max-w-5xl mt-24 z-10 flex flex-col gap-12 scroll-mt-24">
+        <div className="flex flex-col items-center gap-2 text-center px-4 mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl tracking-wide text-foreground uppercase border-b border-accent/20 pb-4 px-8 inline-block">The Fragrance Badge</h2>
+          <span className="text-muted/80 text-sm tracking-widest uppercase">...creates your signature scent</span>
+        </div>
+
+        {categories.filter(c => c.id === 'perfumes').map((category) => (
           <motion.section
             key={category.id}
-            id={category.id}
-            className="flex flex-col gap-6 scroll-mt-24"
+            className="flex flex-col gap-6"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="flex items-center gap-4 px-4">
-              <h2 className="font-serif text-2xl tracking-wide text-foreground uppercase">{category.title}</h2>
-              <div className="flex-grow h-[1px] bg-accent/20"></div>
-            </div>
-
             {category.description && (
-              <div className="px-4 text-muted/80 text-sm max-w-3xl whitespace-pre-wrap leading-relaxed -mt-2">
+              <div className="px-4 text-muted/80 text-sm max-w-3xl whitespace-pre-wrap leading-relaxed mx-auto text-center">
                 {category.description}
               </div>
             )}
@@ -218,6 +209,75 @@ export default function Home() {
             </div>
           </motion.section>
         ))}
+      </div>
+
+      <div className="w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent my-16 z-10" />
+
+      {/* The Badge of Elegance Section */}
+      <div id="the-badge-of-elegance" className="w-full max-w-5xl z-10 flex flex-col gap-16 scroll-mt-24">
+        <div className="flex flex-col items-center gap-2 text-center px-4 mb-8">
+          <h2 className="font-serif text-3xl md:text-4xl tracking-wide text-foreground uppercase border-b border-accent/20 pb-4 px-8 inline-block">The Badge of Elegance</h2>
+          <div className="flex flex-col items-center text-center mt-3 gap-1">
+            <span className="text-accent/90 font-serif text-lg">The badge of elegance 🥰❤️</span>
+            <span className="text-muted/80 text-xs tracking-widest uppercase">Elegance redefined, one step at a time</span>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-20">
+          {categories.filter(c => c.id !== 'perfumes').map((category) => (
+            <motion.section
+              key={category.id}
+              className="flex flex-col gap-6"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <div className="flex items-center gap-4 px-4">
+                <h3 className="font-serif text-2xl tracking-wide text-foreground uppercase">{category.title}</h3>
+                <div className="flex-grow h-[1px] bg-accent/20"></div>
+              </div>
+
+              {category.description && (
+                <div className="px-4 text-muted/80 text-sm max-w-3xl whitespace-pre-wrap leading-relaxed -mt-2">
+                  {category.description}
+                </div>
+              )}
+
+              <div className="flex gap-4 overflow-x-auto pb-8 no-scrollbar md:pb-12 px-4 snap-x">
+                {category.items.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="flex-shrink-0 w-64 md:w-72 aspect-[3/4] rounded-sm overflow-hidden relative border border-accent/10 snap-center group"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 256px, 288px"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent flex flex-col justify-end p-4 opacity-100 transition-opacity duration-300">
+                      <span className="text-foreground font-serif text-lg tracking-wide">{item.title}</span>
+                      <span className="text-muted/80 text-xs mt-1">{item.description}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="flex justify-center px-4 -mt-4 mb-4">
+                <a
+                  href="#contact"
+                  className="px-8 py-3 bg-accent text-background font-sans tracking-wide uppercase text-sm rounded-sm hover:bg-accent/90 transition-colors shadow-lg shadow-accent/20"
+                >
+                  Shop {category.title}
+                </a>
+              </div>
+            </motion.section>
+          ))}
+        </div>
       </div>
     </main>
   );

@@ -16,8 +16,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'The Fragrance Badge',
-  description: 'Signature scents, heels, bags, and luxury wears.',
+  title: 'The Badge Verse',
+  description: 'Home to The Fragrance Badge & The Badge of Elegance. Signature scents, luxury fashion, and accessories.',
   icons: {
     icon: '/logo.png',
   },
